@@ -1,0 +1,25 @@
+{
+  "name": "pnpm-monorepo-app",
+  "version": "1.0.0",
+  "description": "",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "pnpm -r --parallel --filter './packages/*-app' run dev",
+    "bootstrap": "pnpm install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.22.15",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "eslint": "^8.50.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "typescript": "^5.2.2"
+  }
+}

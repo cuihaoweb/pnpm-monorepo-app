@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "jsx": "preserve",
+        "jsxFactory": "h",
+        "jsxFragmentFactory": "Fragment",
+        "noEmitOnError": true,
+        "importHelpers": true,
+        "strict": true,
+        "noImplicitThis": true,
+        "isolatedModules": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "allowJs": true
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
