@@ -7,6 +7,7 @@
   ],
   "scripts": {
     "dev": "pnpm -r --parallel --filter './packages/*-app' run dev",
+    "build": "pnpm -r --parallel --filter './packages/*-app' run build",
     "bootstrap": "pnpm install"
   },
   "keywords": [],
@@ -20,6 +21,8 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-vue": "^9.17.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
   }
 }

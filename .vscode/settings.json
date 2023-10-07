@@ -12,7 +12,8 @@
         "*.json": "jsonc"
     },
     "cSpell.words": [
-        "nodenext"
+        "nodenext",
+        "qiankun"
     ],
     "svg.preview.background": "custom",
     "typescript.tsdk": "node_modules/typescript/lib"
