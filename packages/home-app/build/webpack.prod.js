@@ -1,21 +1,19 @@
+const webpackCommonConfig = require('./webpack.common');
 const {merge} = require('webpack-merge');
-const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const webpackConfigCommon = require('./webpack.common');
+const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
-/** @type{import('webpack').Configuration}*/
-module.exports = merge(webpackConfigCommon, {
+module.exports = merge(webpackCommonConfig, {
     mode: 'production',
     devtool: 'nosources-source-map',
     performance: {
         hints: 'warning'
     },
     optimization: {
-        runtimeChunk: true,
         minimizer: [
             new TerserPlugin({
                 parallel: true
@@ -47,7 +45,7 @@ module.exports = merge(webpackConfigCommon, {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'css/[name].[fullhash:8].css'
+            filename: 'css/[name].[hash:8].css'
         }),
         new CompressionPlugin(),
         new CopyPlugin({

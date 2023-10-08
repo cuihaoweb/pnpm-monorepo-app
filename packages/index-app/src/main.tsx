@@ -1,20 +1,18 @@
-import {createApp} from 'vue';
-import directives from '@/common/directives';
-import Alert from '@/components/modules/alert';
+import {createRoot} from 'react-dom/client';
+import {Provider} from 'react-redux';
+import {RouterProvider} from 'react-router-dom';
+import {onCLS,onFID, onLCP} from 'web-vitals';
 import router from '@/router';
-import App from './App.vue';
-import store from './store';
-import '@/common/vee-validate';
+import store from '@/store';
+// import '@/common/styles/index.less';
 
-const app = createApp(App);
+const root = createRoot(document.getElementById('root') as HTMLElement);
+root.render(
+    <Provider store={store}>
+        <RouterProvider router={router} />
+    </Provider>
+);
 
-app.use(Alert);
-
-app.use(store);
-app.use(router);
-
-Object.keys(directives).forEach((key) => {
-    app.directive(key, directives[key]);
-});
-
-app.mount('#app');
+onLCP(console.log);
+onFID(console.log);
+onCLS(console.log);

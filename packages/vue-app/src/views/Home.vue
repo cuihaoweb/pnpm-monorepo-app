@@ -1,22 +1,20 @@
-
 <template>
-  <div>
-    <imooc-panel></imooc-panel>
-    <router-view></router-view>
-  </div>
+    <h3>Home</h3>
+    <div>
+        <p>当前处于<code>{{ isInQiankun ? 'qiankun' : '独立运行' }}</code>环境</p>
+        <p>vuex的`global module`的user state：<code> {{ JSON.stringify(user) }}</code></p>
+    </div>
 </template>
 
-<script lang="ts">
-import Panel from '@/components/Panel.vue'
-import { defineComponent } from 'vue'
+<script>
+import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'home',
-  components: {
-    'imooc-panel': Panel
-  }
-})
+    name: 'MHome',
+    components: {
+    }
+});
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 </style>

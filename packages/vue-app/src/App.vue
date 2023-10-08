@@ -1,18 +1,20 @@
 <template>
-    <imooc-header />
+    <h1>Header</h1>
+    <router-link to="/">
+        Home
+    </router-link> |
+    <router-link to="/about">
+        About
+    </router-link>
     <router-view />
-    <imooc-footer />
+    <h1>Footer</h1>
 </template>
 
 <script>
 import {defineComponent} from 'vue';
-import Footer from '@/components/Footer.vue';
-import Header from '@/components/Header.vue';
 
 export default defineComponent({
     components: {
-        'imooc-header': Header,
-        'imooc-footer': Footer
     },
     // 测试Alert组件 window.vue.$alert('msg')
     mounted () {

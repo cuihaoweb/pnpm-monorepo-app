@@ -1,17 +1,28 @@
+const { resolve } = require('path');
+const { IS_DEVELOPMENT } = require('./build/config');
+
 module.exports = {
     presets: [
-        ["@babel/preset-env", {
-            "useBuiltIns": "usage",
-            "corejs": 3,
-            "targets": {
-                "browsers": [
-                    "> 1%",
-                    "last 2 versions",
-                    "not dead"
-                ]
-            }
-        }]
+        ['babel-preset-react-app', {
+            runtime: 'automatic'
+        }],
     ],
     plugins: [
+        IS_DEVELOPMENT && "react-refresh/babel",
+        ["module-resolver", {
+            "alias": {
+                "@": resolve(__dirname,'src')
+            }
+        }],
+        ['import', {
+            libraryName: 'antd',
+            style: false,
+            libraryDirectory: 'es'
+        }, 'antd'],
+        ['import', {
+            libraryName: 'react-components',
+            style: name => `${name}/index.css`,
+            libraryDirectory: 'dist'
+        }, 'react-components']
     ].filter(Boolean)
 };

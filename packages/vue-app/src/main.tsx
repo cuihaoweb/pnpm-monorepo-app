@@ -1,28 +1,18 @@
-import {App, createApp} from 'vue';
-import directives from '@/common/directives';
-import Alert from '@/components/modules/alert';
+import {App as AppType, createApp} from 'vue';
 import router from '@/router';
 import App from './App.vue';
 import store from './store';
-import '@/common/vee-validate';
 
-let app: App = null;
+let app: AppType;
 function render(props: {container?: HTMLElement}) {
     const {container} = props;
     app = createApp(App);
 
-    app.use(Alert);
-
     app.use(store);
     app.use(router);
 
-    Object.keys(directives).forEach((key) => {
-        app.directive(key, directives[key]);
-    });
-
     app.mount(container || '#app');
 }
-
 
 if (!window?.__POWERED_BY_QIANKUN__) {
     render({});

@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {VueLoaderPlugin} = require('vue-loader');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const packageName = require('../package.json').name;
 
 const ENV = process.env.NODE_ENV;
 const IS_PRODUCT = ENV === 'production';
@@ -21,10 +20,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: 'js/[name].[hash:8].bundle.js',
-        library: `${packageName}-[name]`,
-        libraryTarget: 'umd',
-        chunkLoadingGlobal: `webpackJsonp_${packageName}`,
-        publicPath: IS_PRODUCT ? './' : '//localhost:8081/sub-vue',
+        publicPath: IS_PRODUCT ? './' : '/',
         clean: true
     },
     resolve: {
