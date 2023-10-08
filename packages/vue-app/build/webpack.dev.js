@@ -10,7 +10,7 @@ module.exports = merge(webpackCommonConfig, {
             directory: path.join(__dirname, '../public')
         },
         compress: true,
-        port: 8081,
+        port: 8082,
         hot: true,
         open: true,
         client: {

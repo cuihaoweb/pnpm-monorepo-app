@@ -1,6 +1,7 @@
 const {merge} = require('webpack-merge');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const webpackConfigCommon = require('./webpack.common');
+const {PORT} = require('./config');
 
 /** @type{import('webpack').Configuration}*/
 module.exports = merge(webpackConfigCommon, {
@@ -10,9 +11,10 @@ module.exports = merge(webpackConfigCommon, {
         runtimeChunk: true
     },
     devServer: {
-        port: 8080,
+        port: PORT,
         open: true,
         hot: true,
+        compress: true,
         client: {
             overlay: false
         },

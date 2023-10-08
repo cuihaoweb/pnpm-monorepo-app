@@ -4,9 +4,7 @@
         "target": "esnext",
         "module": "esnext",
         "moduleResolution": "node",
-        "jsx": "preserve",
-        "jsxFactory": "h",
-        "jsxFragmentFactory": "Fragment",
+        "noEmit": true,
         "noEmitOnError": true,
         "importHelpers": true,
         "strict": true,
@@ -15,7 +13,13 @@
         "resolveJsonModule": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
-        "allowJs": true
+        "allowJs": true,
+        "skipLibCheck": true,
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ]
     },
     "exclude": ["node_modules", "dist"]
 }

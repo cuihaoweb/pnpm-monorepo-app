@@ -63,24 +63,6 @@ module.exports = {
                 ]
             },
             {
-                test: /\.css$/,
-                use: [
-                    IS_PRODUCT ? MiniCssExtractPlugin.loader : 'style-loader',
-                    {
-                        loader: require.resolve('css-loader'),
-                        options: {
-                            modules: {
-                                mode: 'local',
-                                auto: /\.module\.\w+$/i,
-                                localIdentName: '[path][name]__[local]',
-                                localIdentContext: SRC_PATH
-                            }
-                        }
-                    },
-                    require.resolve('postcss-loader')
-                ]
-            },
-            {
                 test: /\.less$/,
                 use: [
                     IS_PRODUCT ? MiniCssExtractPlugin.loader : require.resolve('style-loader'),
@@ -97,6 +79,24 @@ module.exports = {
                     },
                     require.resolve('postcss-loader'),
                     require.resolve('less-loader')
+                ]
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    IS_PRODUCT ? MiniCssExtractPlugin.loader : 'style-loader',
+                    {
+                        loader: require.resolve('css-loader'),
+                        options: {
+                            modules: {
+                                mode: 'local',
+                                auto: /\.module\.\w+$/i,
+                                localIdentName: '[path][name]__[local]',
+                                localIdentContext: SRC_PATH
+                            }
+                        }
+                    },
+                    require.resolve('postcss-loader')
                 ]
             },
             {
@@ -120,6 +120,9 @@ module.exports = {
                 title: 'react App',
                 baseUrl: IS_PRODUCT ? './' : '/'
             }
+        }),
+        new webpack.ProvidePlugin({
+            React: 'react'
         }),
         new webpack.DefinePlugin({
             process: JSON.stringify({

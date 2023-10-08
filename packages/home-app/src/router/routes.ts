@@ -1,31 +1,29 @@
 
 import {RouteRecordRaw} from 'vue-router';
-import ReactApp from '@/views/ReactApp.vue';
-import VueApp from '@/views/VueApp.vue';
+import About from '@/views/About.vue';
+import Home from '@/views/Home.vue';
 
-const routes: Array<RouteRecordRaw> = [
-    {
-        path: '/',
-        redirect: '/sub-vue'
-    },
-    {
-        path: '/sub-vue',
-        name: 'vue',
-        component: VueApp
-    },
+const routes: RouteRecordRaw[] = [
     {
         path: '/sub-home',
-        name: 'home',
-        component: ReactApp
-    },
-    {
-        path: '/sub-react',
-        name: 'react',
-        component: ReactApp
+        children: [
+            {
+                path: 'index',
+                name: 'index',
+                component: Home
+            },
+            {
+                path: 'home',
+                name: 'home',
+                component: Home
+            },
+            {
+                path: 'about',
+                name: 'about',
+                component: About
+            }
+        ]
     }
 ];
 
-export default {
-    linkExactActiveClass: 'layui-this',
-    routes
-};
+export default routes;

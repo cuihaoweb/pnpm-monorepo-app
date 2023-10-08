@@ -1,22 +1,24 @@
-// import Button from '@/components/basic/Button';
+import {loadMicroApp} from 'qiankun';
+import {useRef} from 'react';
+import useMounted from '@/common/hook/useMounted';
 import './style.module.less';
 
 function About() {
-    return <div styleName="root">
-        <h1 className='text-3xl font-bold underline'>About</h1>
-        {/* <Button/> */}
-        <h1 className='text-3xl font-bold underline'>About</h1>
-        {/* <Button/> */}
-        <h1 className='text-3xl font-bold underline'>About</h1>
-        {/* <Button/> */}
-        <h1 className='text-3xl font-bold underline'>About</h1>
-        {/* <Button/> */}
-        <h1 className='text-3xl font-bold underline'>About</h1>
-        {/* <Button/> */}
-        <h1 className='text-3xl font-bold underline'>About</h1>
-        {/* <Button/> */}
-        <h1 className='text-3xl font-bold underline'>About</h1>
-    </div>;
+    const vueContainer = useRef<HTMLElement>(null);
+
+    useMounted(() => {
+        const microApp = loadMicroApp({
+            name: 'sub-home',
+            entry: '//localhost:8082',
+            container: vueContainer.current
+        });
+
+        return () => {
+            microApp.unmount();
+        };
+    });
+
+    return <div ref={vueContainer}></div>;
 }
 
 export default About;

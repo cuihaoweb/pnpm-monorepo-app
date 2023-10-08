@@ -2,9 +2,13 @@
 </script>
 
 <template>
-    <span @click="goto('/sub-vue')">subVue</span>
-    <hr>
-    <span @click="goto('/sub-home')">subReact</span>
+    <h1>home App</h1>
+    <router-link to="/sub-home/home">
+        Home
+    </router-link> |
+    <router-link to="/sub-home/about">
+        About
+    </router-link>
     <router-view />
 </template>
 

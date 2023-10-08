@@ -4,7 +4,7 @@ import {RouterProvider} from 'react-router-dom';
 import {onCLS,onFID, onLCP} from 'web-vitals';
 import router from '@/router';
 import store from '@/store';
-// import '@/common/styles/index.less';
+import '@/common/styles/index.less';
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(

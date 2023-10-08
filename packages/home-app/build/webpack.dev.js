@@ -1,6 +1,7 @@
 const path = require('path');
 const webpackCommonConfig = require('./webpack.common');
 const {merge} = require('webpack-merge');
+const {PORT} = require('./config');
 
 module.exports = merge(webpackCommonConfig, {
     mode: 'development',
@@ -10,7 +11,7 @@ module.exports = merge(webpackCommonConfig, {
             directory: path.join(__dirname, '../public')
         },
         compress: true,
-        port: 8080,
+        port: PORT,
         hot: true,
         open: true,
         client: {

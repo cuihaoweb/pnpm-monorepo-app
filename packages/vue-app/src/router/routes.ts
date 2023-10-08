@@ -3,28 +3,27 @@ import {RouteRecordRaw} from 'vue-router';
 import About from '@/views/About.vue';
 import Home from '@/views/Home.vue';
 
-const routes: Array<RouteRecordRaw> = [
-    {
-        path: '/',
-        redirect: '/home'
-    },
+const routes: RouteRecordRaw[] = [
     {
         path: '/sub-vue',
-        redirect: '/home'
-    },
-    {
-        path: '/home',
-        name: 'home',
-        component: Home
-    },
-    {
-        path: '/about',
-        name: 'about',
-        component: About
+        children: [
+            {
+                path: 'index',
+                name: 'index',
+                component: Home
+            },
+            {
+                path: 'home',
+                name: 'home',
+                component: Home
+            },
+            {
+                path: 'about',
+                name: 'about',
+                component: About
+            }
+        ]
     }
 ];
 
-export default {
-    linkExactActiveClass: 'layui-this',
-    routes
-};
+export default routes;

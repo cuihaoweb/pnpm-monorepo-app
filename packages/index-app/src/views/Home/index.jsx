@@ -1,14 +1,26 @@
-import {Outlet} from 'react-router-dom';
-import style from './style.module.less';
+import {loadMicroApp} from 'qiankun';
+import {useRef} from 'react';
+import useMounted from '@/common/hook/useMounted';
 
 function Home() {
-    return (
-        <div className={style.root}>
-            hello
-            <h1>Hom1e</h1>
-            <Outlet></Outlet>
-        </div>
-    );
+    const vueContainer = useRef<HTMLElement>(null);
+
+    useMounted(() => {
+        const microApp = loadMicroApp({
+            name: 'sub-vue',
+            entry: '//localhost:8081',
+            container: vueContainer.current
+        });
+
+        return () => {
+            microApp.unmount();
+        };
+    });
+
+    return <>
+        <h1>hello, 你好</h1>
+        <div ref={vueContainer}></div>;
+    </>;
 }
 
 export default Home;

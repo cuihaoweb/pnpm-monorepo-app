@@ -24,7 +24,7 @@ module.exports = {
         library: `${packageName}-[name]`,
         libraryTarget: 'umd',
         chunkLoadingGlobal: `webpackJsonp_${packageName}`,
-        publicPath: IS_PRODUCT ? './' : '//localhost:8081/sub-vue',
+        publicPath: IS_PRODUCT ? './' : '/',
         clean: true
     },
     resolve: {
