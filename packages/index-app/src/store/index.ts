@@ -1,13 +1,12 @@
-import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
+import globalReducer from './global';
 import pageReducer from './page';
 
 const store = configureStore({
     reducer: {
-        page: pageReducer
-    },
-    middleware: getDefaultMiddleware({
-        serializableCheck: false // 禁用序列化检查
-    })
+        page: pageReducer,
+        global: globalReducer
+    }
 });
 
 export type RootState = ReturnType<typeof store.getState>

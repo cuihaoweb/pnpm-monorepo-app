@@ -1,5 +1,8 @@
 <template>
     <h1>vue App</h1>
+    <h3 @click="onClick">
+        全局数据： {{ global.userName }}
+    </h3>
     <router-link to="/sub-vue/home">
         Home
     </router-link> |
@@ -10,13 +13,23 @@
 </template>
 
 <script>
-import {defineComponent} from 'vue';
+import {computed, defineComponent} from 'vue';
+import {useStore} from 'vuex';
+import {getGlobalActions} from '@/globalStore';
 
 export default defineComponent({
-    components: {
-    },
-    mounted () {
-        window.vue = this;
+    setup() {
+        const store = useStore();
+        const global = computed(() => store.state.global);
+
+        const onClick = () => {
+            getGlobalActions().setGlobalState({userName: 'vue'});
+        };
+
+        return {
+            global,
+            onClick
+        };
     }
 });
 </script>

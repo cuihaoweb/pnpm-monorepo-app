@@ -1,4 +1,5 @@
 module.exports = {
+    root: true,
     env: {
         browser: true,
         es2021: true,
@@ -6,10 +7,46 @@ module.exports = {
         jest: true
     },
     extends: [
-        'eslint:recommended',
-        'plugin:react/recommended',
-        'plugin:react/jsx-runtime',
-        'plugin:react-hooks/recommended'
+        'eslint:recommended'
+    ],
+    overrides: [
+        {
+            files: ['*.ts', '*.tsx'],
+            extends: ['plugin:@typescript-eslint/recommended'],
+            parser: '@typescript-eslint/parser',
+            plugins: ['@typescript-eslint'],
+            rules: {
+                '@typescript-eslint/no-var-requires': [0],
+                '@typescript-eslint/no-namespace': [0],
+                '@typescript-eslint/no-empty-function': [1],
+                '@typescript-eslint/no-explicit-any': [1],
+                '@typescript-eslint/ban-types': [1]
+            }
+        },
+        {
+            files: ['*.jsx', '*.tsx'],
+            extends: [
+                'plugin:react/recommended',
+                'plugin:react/jsx-runtime',
+                'plugin:react-hooks/recommended'
+            ],
+            rules: {
+                'react/no-unknown-property': ['error', {ignore: ['styleName']}]
+            }
+        },
+        {
+            files: ['*.vue'],
+            extends: [
+                'plugin:vue/vue3-recommended'
+            ],
+            parser: 'vue-eslint-parser',
+            parserOptions: {
+                parser: '@typescript-eslint/parser'
+            },
+            rules: {
+                'vue/html-indent': [2, 4]
+            }
+        }
     ],
     parserOptions: {
         ecmaVersion: 'latest',
@@ -17,18 +54,6 @@ module.exports = {
     },
     plugins: [
         'simple-import-sort'
-    ],
-    overrides: [
-        {
-            files: ['*.ts', '*.tsx'],
-            extends: [
-                'plugin:@typescript-eslint/recommended'
-            ],
-            plugins: [
-                '@typescript-eslint'
-            ],
-            parser: '@typescript-eslint/parser'
-        }
     ],
     rules: {
         // 缩进
@@ -60,11 +85,9 @@ module.exports = {
 
         'no-case-declarations': [0],
 
-        'no-shadow': [2],
+        'no-shadow': [1],
 
         'no-redeclare': [2],
-
-        'react/no-unknown-property': ['error', {ignore: ['styleName']}],
 
         'simple-import-sort/imports': [1, {
             groups: [['^node:', '^[a-zA-Z]', '^@[a-zA-Z]', '^@\\/', '^\\/', '^\\.', '^\\u0000']]

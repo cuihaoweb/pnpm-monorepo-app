@@ -4,8 +4,10 @@ import {RouterProvider} from 'react-router-dom';
 import {onCLS,onFID, onLCP} from 'web-vitals';
 import router from '@/router';
 import store from '@/store';
+import {initialGlobalState} from './globalStore';
 import '@/common/styles/index.less';
 
+initialGlobalState(store);
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
     <Provider store={store}>
