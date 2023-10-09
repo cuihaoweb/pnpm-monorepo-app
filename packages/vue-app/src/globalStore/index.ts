@@ -8,7 +8,7 @@ interface initGlobalActionsParams {
     actions: any,
     onGlobalStateChange: Function
 }
-export const initGlobalActions = (params: initGlobalActionsParams) => {
+const initGlobalActions = (params: initGlobalActionsParams) => {
     const {state, store, actions, onGlobalStateChange} = params;
     globalActions = actions;
 
@@ -19,4 +19,9 @@ export const initGlobalActions = (params: initGlobalActionsParams) => {
     });
 };
 
-export const getGlobalActions = () => globalActions;
+const getGlobalActions = () => globalActions;
+
+export {
+    getGlobalActions,
+    initGlobalActions
+};

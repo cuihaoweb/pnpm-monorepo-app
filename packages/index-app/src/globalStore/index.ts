@@ -2,23 +2,19 @@ import {initGlobalState, MicroAppStateActions} from 'qiankun';
 import {Store} from '@reduxjs/toolkit';
 import store from '@/store';
 import {setGlobal} from '@/store/global';
+import {Func} from '@/types/utils';
 import {globalState} from './state';
 
-const task: Function[] = [];
+const task: Func[] = [];
+const actions: MicroAppStateActions = initGlobalState(globalState);
 
 // eslint-disable-next-line no-shadow
-export const initialGlobalState = (store: Store) => {
+const initialGlobalState = (store: Store) => {
     store.dispatch(setGlobal(globalState));
-    _onGlobalStateChange();
+    initGlobalStateChange();
 };
 
-export const actions: MicroAppStateActions = initGlobalState(globalState);
-
-export const getGlobalState = () => {
-    return store.getState().global;
-};
-
-export const _onGlobalStateChange = () => actions.onGlobalStateChange((state, prev) => {
+const initGlobalStateChange = () => actions.onGlobalStateChange((state, prev) => {
     if (JSON.stringify(state) === JSON.stringify(prev)) {
         return;
     }
@@ -26,8 +22,20 @@ export const _onGlobalStateChange = () => actions.onGlobalStateChange((state, pr
     task.forEach(callback => callback(state));
 });
 
-export const onGlobalStateChange = (callback: Function) => {
+const getGlobalState = () => {
+    return store.getState().global;
+};
+
+const onGlobalStateChange = (callback: Func) => {
     task.push(callback);
 };
 
-export const offGlobalStateChange = () => actions.offGlobalStateChange();
+const offGlobalStateChange = () => actions.offGlobalStateChange();
+
+export {
+    actions,
+    getGlobalState,
+    initialGlobalState,
+    offGlobalStateChange,
+    onGlobalStateChange
+};
