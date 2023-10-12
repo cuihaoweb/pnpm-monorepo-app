@@ -1,27 +1,42 @@
-import {Store} from 'vuex';
+import {createSubGlobalStore,SubGlobalStore} from 'shared';
+import store from '@/store';
 
-let globalActions: any;
+let globalStore: SubGlobalStore<typeof store>;
 
-interface initGlobalActionsParams {
-    store: Store<any>
-    state: Record<string, any>
-    actions: any,
-    onGlobalStateChange: Function
-}
-const initGlobalActions = (params: initGlobalActionsParams) => {
-    const {state, store, actions, onGlobalStateChange} = params;
-    globalActions = actions;
-
-    store.commit('setGlobal', state);
-
-    onGlobalStateChange((value: Record<string, any>) => {
-        store.commit('setGlobal', value);
-    });
+const initGlobalActions = (params: Parameters<typeof createSubGlobalStore<typeof store>>[0]) => {
+    globalStore = createSubGlobalStore(params);
+    params.store.commit('setGlobal', params.props.state);
 };
 
-const getGlobalActions = () => globalActions;
+const getGlobalStore = () => globalStore;
 
 export {
-    getGlobalActions,
+    getGlobalStore,
     initGlobalActions
 };
+
+// let globalActions: any;
+
+// interface initGlobalActionsParams {
+//     store: Store<any>
+//     state: Record<string, any>
+//     actions: any,
+//     onGlobalStateChange: Function
+// }
+// const initGlobalActions = (params: initGlobalActionsParams) => {
+//     const {state, store, actions, onGlobalStateChange} = params;
+//     globalActions = actions;
+
+//     store.commit('setGlobal', state);
+
+//     onGlobalStateChange((value: Record<string, any>) => {
+//         store.commit('setGlobal', value);
+//     });
+// };
+
+// const getGlobalActions = () => globalActions;
+
+// export {
+//     getGlobalActions,
+//     initGlobalActions
+// };

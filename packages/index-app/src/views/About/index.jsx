@@ -1,7 +1,7 @@
 import {loadMicroApp} from 'qiankun';
 import {useRef} from 'react';
 import useMounted from '@/common/hook/useMounted';
-import {actions, getGlobalState, onGlobalStateChange} from '@/globalStore';
+import {actions, getGlobalState, globalStore, onGlobalStateChange} from '@/globalStore';
 import './style.module.less';
 
 function About() {
@@ -13,9 +13,7 @@ function About() {
             entry: '//localhost:8082',
             container: vueContainer.current,
             props: {
-                actions,
-                state: getGlobalState(),
-                onGlobalStateChange
+                globalStore
             }
         });
 

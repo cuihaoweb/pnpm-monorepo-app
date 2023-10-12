@@ -1,7 +1,7 @@
 import {loadMicroApp} from 'qiankun';
 import {useRef} from 'react';
 import useMounted from '@/common/hook/useMounted';
-import {actions, getGlobalState} from '@/globalStore';
+import {actions, getGlobalState, globalStore} from '@/globalStore';
 
 function Home() {
     const vueContainer = useRef<HTMLElement>(null);
@@ -12,8 +12,9 @@ function Home() {
             entry: '//localhost:8081',
             container: vueContainer.current,
             props: {
-                actions,
-                state: getGlobalState()
+                globalStore
+                // actions,
+                // state: getGlobalState()
             }
         });
 

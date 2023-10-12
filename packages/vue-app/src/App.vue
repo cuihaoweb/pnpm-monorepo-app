@@ -15,7 +15,7 @@
 <script>
 import {computed, defineComponent} from 'vue';
 import {useStore} from 'vuex';
-import {getGlobalActions} from '@/globalStore';
+import {getGlobalStore} from './globalStore';
 
 export default defineComponent({
     setup() {
@@ -23,7 +23,7 @@ export default defineComponent({
         const global = computed(() => store.state.global);
 
         const onClick = () => {
-            getGlobalActions().setGlobalState({userName: 'vue'});
+            getGlobalStore().setState({userName: 'vue'});
         };
 
         return {

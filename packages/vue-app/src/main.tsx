@@ -1,29 +1,38 @@
+import {qiankunProps} from 'shared';
 import {App as AppType, createApp} from 'vue';
 import router from '@/router';
+import store from '@/store';
 import App from './App.vue';
 import {initGlobalActions} from './globalStore';
-import store from './store';
 
-interface qiankunProps {
-    container?: HTMLElement,
-    actions?: any,
-    state?: any,
-    onGlobalStateChange: Function
-}
 let app: AppType;
-function render(props: qiankunProps) {
-    const {container, state, actions, onGlobalStateChange} = props;
+function render(props?: qiankunProps) {
     app = createApp(App);
-    initGlobalActions({state, actions, store, onGlobalStateChange});
+
+    if (props) {
+        initGlobalActions({
+            props,
+            store,
+            onGlobalStateChange: (state, prev) => {
+                if (JSON.stringify(state) === JSON.stringify(prev)) {
+                    return;
+                }
+                store.dispatch('setGlobal', state);
+            },
+            getState: () => {
+                return store.state.global;
+            }
+        });
+    }
 
     app.use(store);
     app.use(router);
 
-    app.mount(container || '#app');
+    app.mount(props?.container || '#app');
 }
 
 if (!window.__POWERED_BY_QIANKUN__) {
-    render({});
+    render();
 }
 
 export async function bootstrap() {
